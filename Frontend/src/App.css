@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Revolution&display=swap');
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.btnBlue{
+  background-color: rgb(13,111,252);
+  margin-top: 10px !important;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-size: bold;
+}
+.btnGreen{
+  background-color: rgb(74, 147, 0);
+  margin-top: 10px !important;
+  padding: 10px;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-size: bold;
+}
+.delete{
+  background-color: rgb(220,52,68);
+  color: white;
+  border: none;
+  border-radius: 10%;
+  padding: 5px;
+}
+.Dashboard{
+  background-color: black;
+  height: 100vh;
+  background-image: url('../public/highwayAlertBg1.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.Dashboard-main{
+  background-color: rgba(255, 255, 255, 0.372);
+  width: fit-content;
+  border-radius: 30px;
+  padding: 30px;
+}
+.row{
+    flex-wrap:nowrap;
+    display: flex;
+}
+.Dashboard{
+    overflow-x: hidden;
+}
+.flex-h{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.v-flex{
+    display: flex;
+    flex-direction: column;
+}
+.Dashboard {
+  display: flex;
+  flex-direction: column;
+}
+.Dashboard .main{
+    background-color: #ffffff58;
+    padding: 20px;
+    border-radius: 30px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.user-input{
+    padding: 20px;
+}
+.user-input input, select{
+    margin-top: 10px;
+    border-radius: 7px;
+    padding: 10px;
+    border: none;
+}
+.add{
+  width: 30%;
+  background-color: rgb(13,202,240);
+  color: white;
+  padding: 10px;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  margin: 1cqmin auto;
+
+}
+.added-locations {
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px; */
+}
+
+.added-location {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.map{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 10px;
+}
+.map .heading{
+  font-family: "Protest Revolution", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2em;
+  
+}
+.bottom{
+  width: 100vw;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.animation{
+  text-align: center;
+}
+.bottom img, i{
+  height: 50px;
+  margin-top: 10px;
+  font-size: 2em;
+  color: #6c757d;
+}
+.vertical{
+  display: flex;
+  flex-direction: column;
+}
+.animation img{
+  height: 10vh !important;
+}
+.count {
+  position: relative;
+  display: inline-block; /* Ensures the div only takes up as much width as necessary */
+  height: 50px;
+}
+
+
+
+.count p {
+  position: absolute;
+  top: 3px; /* Adjust the top position as needed */
+  right: 8px; /* Adjust the right position as needed */
+  color: rgb(0, 0, 0); /* Set the text color */
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  border: 2px solid black;
+  padding: 2px;
+  font-size: 10px; 
+  font-weight: bold;
+}
+
+
+
+/* -----------------------------SignUp Login Page CSS------------------------------- */
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+.container2 {
+  position: relative;
+  max-width: 700px;
+  width: 100%;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+.container2 header {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+}
+.container2 .form2 {
+  margin-top: 30px;
+}
+.form2 .input-box {
+  width: 100%;
+  margin-top: 20px;
+}
+.input-box label {
+  color: #333;
+}
+.form2 :where(.input-box input, .select-box) {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  color: #707070;
+  margin-top: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+}
+.input-box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.form2 .column {
+  display: flex;
+  column-gap: 15px;
+}
+
+.address :where(input, .select-box) {
+  margin-top: 15px;
+}
+.form2 button {
+  height: 55px;
+  width: 100%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-top: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgb(130, 106, 251);
+}
+.form2 button:hover {
+  background: rgb(88, 56, 250);
+}
+/*Responsive*/
+@media screen and (max-width: 500px) {
+  .form2 .column {
+    flex-wrap: wrap;
+  }
+}
+/* -----------------------------------------SignUp Login CSS Ends Here--------------------------------- */
