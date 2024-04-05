@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import Animation from './Animation';
 import { useMyContext } from '../context/MyContext';
-import response from '../components/response.json';
+// import response from '../components/response.json';
 import { FaSave } from 'react-icons/fa';
 
 const containerStyle = {
@@ -170,12 +170,12 @@ function MyComponent() {
 
   const fetchNearbyLocations = async (location, radius, keyword, rating) => {
     try {
-      // const response = await fetch(
-      //   `${BASE_URL}/api/places?location=${location.lat},${location.lng}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_PLACES_AND_MAP_API_KEY}`
-      // )
-      // console.log(response);
-      // const data = await response.json();
-      const data = response;
+      const response = await fetch(
+        `${BASE_URL}/api/places?location=${location.lat},${location.lng}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_PLACES_AND_MAP_API_KEY}`
+      )
+      console.log(response);
+      const data = await response.json();
+      // const data = response;
       console.log(`Fetched locations of type ${keyword} -->>`, data);
 
       if (keyword === 'restaurant') {
