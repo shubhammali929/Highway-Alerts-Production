@@ -8,7 +8,7 @@ import { FaSave } from 'react-icons/fa';
 
 const containerStyle = {
   width: '90vw',
-  height: '75vh',
+  height: '65vh',
   borderRadius: '20px',
   border: '2px solid gray'
 };
