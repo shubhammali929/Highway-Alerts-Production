@@ -8,6 +8,7 @@ import SavedLocations from './components/SavedLocations';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Navbar from './components/Navbar';
+import About from './components/About';
 
 function App() {
   const isLoggedIn = window.localStorage.getItem("loggedIn");
@@ -16,11 +17,13 @@ function App() {
       <Router>
         <Navbar/>
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<MyProvider><Dashboard /></MyProvider>} />
           <Route path="/mycomponent" element={<MyProvider><MyComponent /></MyProvider>} />
           <Route path="/SavedLocations" element={<MyProvider><SavedLocations /></MyProvider>} />
-          <Route path="/" element={isLoggedIn == "true" ? <MyProvider><Dashboard /></MyProvider>  : <Login />} />
+          <Route path="/" element={isLoggedIn == "true" ? <MyProvider><Dashboard /></MyProvider>  : <MyProvider><Login /></MyProvider>} />
           <Route path="/Signup" element={<MyProvider><Signup /></MyProvider>} />
+          <Route path="/About" element={<About/>} />
+          
         </Routes>
       </Router>
     </div>

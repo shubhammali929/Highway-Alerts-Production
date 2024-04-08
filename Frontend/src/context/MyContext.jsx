@@ -23,10 +23,12 @@ export const MyProvider = ({ children }) => {
     const [speechInputText, setSpeechInputText] = useState('');
     const [currLocationName, setCurrLocationName] = useState(null);
     const [isProcessingNextLocation, setIsProcessingNextLocation] = useState(false);
+    const [userData, setUserData] = useState(null);
+    const BASE_URL = "https://highway-alerts.onrender.com";
 
   return (
     <MyContext.Provider
-      value={{map,setMap,locationQueue,setLocationQueue,restaurant,setRestaurants,gyms,setGyms,park,setParks,hospital, setHospitals, parking, setParkings, cafe, setCafes, shopping_mall, setShopping_malls, gas_station, setGas_stations,
+      value={{userData, setUserData, map,setMap,locationQueue,setLocationQueue,restaurant,setRestaurants,gyms,setGyms,park,setParks,hospital, setHospitals, parking, setParkings, cafe, setCafes, shopping_mall, setShopping_malls, gas_station, setGas_stations, BASE_URL,
         // ... (other state variables)
         userLocation,setUserLocation,selectedMarker,setSelectedMarker,animation,setAnimation,speechInputText,setSpeechInputText,isProcessingNextLocation,setIsProcessingNextLocation, currLocationName,setCurrLocationName}}
     >

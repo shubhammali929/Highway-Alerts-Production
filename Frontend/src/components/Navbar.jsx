@@ -17,13 +17,13 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                <a className="nav-link active" aria-current="page"onClick={() => navigate('/')}>Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">About</a>
+                                <a className="nav-link" onClick={()=>{navigate('/About')}}>About</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link delete" onClick={handleLogout} >Logout</a>
+                                <a className="nav-link " onClick={handleLogout} >Logout</a>
                             </li>
 
                         </ul>

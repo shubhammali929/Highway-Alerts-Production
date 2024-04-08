@@ -9,7 +9,12 @@ body {
   overflow: hidden;
   height: 100vh;
 }
-
+.navbar i{
+  font-size: 1.25rem;
+  height: 32px;
+  color: rgb(255, 255, 255);
+  margin-right: 7px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -142,7 +147,7 @@ code {
 .animation{
   text-align: center;
 }
-.bottom img, i{
+.bottom img, .bottom i{
   height: 50px;
   margin-top: 10px;
   font-size: 2em;
@@ -252,3 +257,11 @@ code {
   }
 }
 /* -----------------------------------------SignUp Login CSS Ends Here--------------------------------- */
+
+
+.card-body .btn{
+  font-size: 1.2rem;
+}
+.card-body i{
+  margin-right: 10px;
+}

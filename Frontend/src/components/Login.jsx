@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link , useNavigate } from 'react-router-dom';
+import { useMyContext } from '../context/MyContext';
 export default function Login() {
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
-  const BASE_URL = "https://highway-alerts.onrender.com";
+  const {BASE_URL} = useMyContext();
+  const setUser = useMyContext();
+
   const handleLogin = (e) => {
     e.preventDefault();
     // console.log( email, pass);
@@ -28,6 +31,7 @@ export default function Login() {
           window.localStorage.setItem("token", data.token); // Storing the token
           window.localStorage.setItem("loggedIn", "true");
           navigate("/dashboard"); // Redirecting to the dashboard
+
         } else {
           alert("Login Failed. Please check your credentials.");
         }

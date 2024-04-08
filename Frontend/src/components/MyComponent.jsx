@@ -3,8 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import Animation from './Animation';
 import { useMyContext } from '../context/MyContext';
-import response from '../components/response.json';
-import { FaSave } from 'react-icons/fa';
+// import response from '../components/response.json';
 
 const containerStyle = {
   width: '90vw',
@@ -15,24 +14,61 @@ const containerStyle = {
 
 function MyComponent() {
   // const map,isProcessingNextLocation, setIsProcessingNextLocation,speechInputText,
-  const { setMap, locationQueue, setLocationQueue, restaurant, setRestaurants, gyms, setGyms, park, setParks, hospital, setHospitals, parking, setParkings, cafe, setCafes, shopping_mall, setShopping_malls, gas_station, setGas_stations, userLocation, setUserLocation, selectedMarker, setSelectedMarker, animation, setAnimation, setSpeechInputText, currLocationName, setCurrLocationName } = useMyContext();
+  const { setMap, locationQueue, setLocationQueue, restaurant, setRestaurants, gyms, setGyms, park, setParks, hospital, setHospitals, parking, setParkings, cafe, setCafes, shopping_mall, setShopping_malls, gas_station, setGas_stations, userLocation, setUserLocation, selectedMarker, setSelectedMarker, animation, setAnimation, setSpeechInputText, currLocationName, setCurrLocationName,userData, setUserData } = useMyContext();
   const location = useLocation();
   const [isSpeechPaused, setIsSpeechPaused] = useState(false);
   const [spokenLocation, setSpokenLocation] = useState(null);
   const submittedData = location.state?.locations || [];
   const [isSaved, setIsSaved] = useState(false);
-  const BASE_URL = "https://highway-alerts.onrender.com";
+  const {BASE_URL} = useMyContext();
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY
   });
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     setIsSaved(!isSaved);
-  };
+    console.log("Starting to save location ...");
 
+    if (!spokenLocation) return; // Make sure a location is spoken
 
- 
+    // console.log("Saving location ...", userData.email);
+    // console.log("User email: " + userData.email);
+    // console.log("Place name: " + spokenLocation.name);
+    // console.log("Address: " + spokenLocation.vicinity);
+    // console.log("Coordinates: " + spokenLocation.geometry.location.lat + "," + spokenLocation.geometry.location.lng);
+    // console.log("Place ID: " + spokenLocation.place_id);
+
+    try {
+        const response = await fetch(`${BASE_URL}/user/favorite-place`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: userData.email, // User's email
+                savedLocation: {
+                    name: spokenLocation.name,
+                    vicinity: spokenLocation.vicinity,
+                    lat: spokenLocation.geometry.location.lat,
+                    lng: spokenLocation.geometry.location.lng,
+                    place_id: spokenLocation.place_id
+                }
+            }),
+        });
+        const data = await response.json();
+        console.log('Response:', data); // Log the response for debugging
+        if (response.ok) {
+            alert("Favorite place added successfully")
+            console.log('Favorite place added successfully:', data);
+            setIsSaved(true);
+        } else {
+            console.error('Failed to add favorite place:', data.error);
+        }
+    } catch (error) {
+        console.error('Error adding favorite place:', error);
+    }
+};
 
   const convertToSpeech = async (text) => {
     return new Promise((resolve) => {
@@ -170,12 +206,12 @@ function MyComponent() {
 
   const fetchNearbyLocations = async (location, radius, keyword, rating) => {
     try {
-      // const response = await fetch(
-      //   `${BASE_URL}/api/places?location=${location.lat},${location.lng}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_PLACES_AND_MAP_API_KEY}`
-      // )
-      // console.log(response);
-      // const data = await response.json();
-      const data = response;
+      const response = await fetch(
+        `${BASE_URL}/api/places?location=${location.lat},${location.lng}&radius=${radius}&keyword=${keyword}&key=${process.env.REACT_APP_PLACES_AND_MAP_API_KEY}`
+      )
+      console.log(response);
+      const data = await response.json();
+      // const data = response;
       console.log(`Fetched locations of type ${keyword} -->>`, data);
 
       if (keyword === 'restaurant') {
@@ -209,6 +245,7 @@ function MyComponent() {
             icon: result.icon,
             icon_background_color: result.icon_background_color,
             vicinity: result.vicinity,
+            place_id: result.place_id,
           })),
       ]);
     } catch (error) {

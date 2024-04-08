@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useMyContext } from '../context/MyContext';
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -7,9 +8,10 @@ export default function Dashboard() {
   const [range, setRange] = useState('');
   const [rating, setRating] = useState('');
   const [locations, setLocations] = useState([]);
-  const [userData, setUserData] = useState(null);
+  const {userData, setUserData} = useMyContext();
+
   const [greeting, setGreeting] = useState('');
-  const BASE_URL = "https://highway-alerts.onrender.com";
+  const {BASE_URL} = useMyContext();
   const [dropdownOptions, setDropdownOptions] = useState([
     'restaurant',
     'hospital',

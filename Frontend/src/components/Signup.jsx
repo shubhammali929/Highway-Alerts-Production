@@ -1,30 +1,39 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-
+import { useMyContext } from '../context/MyContext';
 export default function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [pass, setPass] = useState("");
-    const BASE_URL = "https://highway-alerts.onrender.com";
+    const {BASE_URL} = useMyContext();
+    
     const handleSignup = (e) => {
         e.preventDefault();
         console.log(name, email, pass);
-        fetch(`${BASE_URL}/register`,{
-            method:"POST",
-            crossDomain:true,
-            headers:{
-                "Content-Type": "application/json", 
+        fetch(`${BASE_URL}/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
                 Accept: "application/json",
-                "Access-Control-Allow-Origin": "*"
             },
-            body:JSON.stringify({
-                name,email,pass,
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                pass: pass,
             }),
-        }).then((res) => res.json())
-        .then((data) =>{
-            console.log(data,"UserRegister");
         })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data, "UserRegister");
+            alert("Registration Sucessfull..")
+        })
+        .catch((error) => {
+            console.error("Error registering user:", error);
+        });
     };
+    
+    
+    
 
     return (
         <div className="container2">
