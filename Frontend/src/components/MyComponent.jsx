@@ -7,7 +7,7 @@ import { useMyContext } from '../context/MyContext';
 
 const containerStyle = {
   width: '90vw',
-  height: '75vh',
+  height: '65vh',
   borderRadius: '20px',
   border: '2px solid gray'
 };
@@ -99,7 +99,7 @@ function MyComponent() {
     setIsSpeechPaused(!isSpeechPaused);
   };
 
-  const listenToUser = async () => {
+  const listenToUser = async (name) => {
     return new Promise(async (resolve) => {
       setSpeechInputText("");
       setAnimation('listening');
@@ -128,8 +128,8 @@ function MyComponent() {
         console.log(`loweredCase--> ${lowercasedInput}`);
 
         if (lowercasedInput.includes("yes")) {
-          await convertToSpeech(`You will now be redirected to the map with location ${currLocationName}`);
-          window.location.href = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${currLocationName}&travelmode=Driving`;
+          await convertToSpeech(`You will now be redirected to the map with location ${name}`);
+          window.location.href = `https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${name}&travelmode=Driving`;
           setLocationQueue([]);
         } else if (lowercasedInput.includes("no")) {
           await convertToSpeech(`Moving to the Next Location`);
@@ -177,7 +177,7 @@ function MyComponent() {
       await convertToSpeech(`There is ${name} at the distance of ${distance.toFixed(2)} km having a rating of ${rating} stars, do you want to add this location to your map?`);
       setCurrLocationName(name);
 
-      await listenToUser(); // Wait for user response
+      await listenToUser(name); // Wait for user response
 
 
       setLocationQueue((prevQueue) => prevQueue.slice(1));
