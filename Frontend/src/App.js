@@ -23,7 +23,6 @@ function App() {
           <Route path="/" element={isLoggedIn == "true" ? <MyProvider><Dashboard /></MyProvider>  : <MyProvider><Login /></MyProvider>} />
           <Route path="/Signup" element={<MyProvider><Signup /></MyProvider>} />
           <Route path="/About" element={<About/>} />
-          
         </Routes>
       </Router>
     </div>
