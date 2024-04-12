@@ -1,10 +1,34 @@
 import React from 'react'
 import {  useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function Navbar() {
     const handleLogout = ()=> {
         window.localStorage.clear();
+        toast.warn('You have been Logged out, please login again to use the application', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            });
         navigate("/");
       }
+
+    //   const notify = ()=> {
+    //     toast.success('🦄 Wow so easy!', {
+    //         position: "top-center",
+    //         autoClose: 2000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: false,
+    //         draggable: true,
+    //         progress: undefined,
+    //         });
+    //   }
       const navigate = useNavigate();
     return (
         <div>
@@ -30,6 +54,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
+            <ToastContainer />
         </div>
     )
 }

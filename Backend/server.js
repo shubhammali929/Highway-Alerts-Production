@@ -29,7 +29,8 @@ const SavedLocationSchema = new mongoose.Schema(
     lat: Number,
     lng: Number,
     place_id: String,
-    userEmail: { type: String, ref: 'UserInfo' } // Reference to the email of the user who saved the location
+    userEmail: { type: String, ref: 'UserInfo' } 
+    // Reference to the email of the user who saved the location
   },
   {
     collection: "SavedLocations",

@@ -22,7 +22,7 @@ export default function SavedLocations() {
     };
 
     fetchSavedLocations();
-  }, [userData.email]);
+  }, []);
 
 
   return (
@@ -40,8 +40,8 @@ export default function SavedLocations() {
                   <div className="card-body">
                     <h5 className="card-title">Name : {location.name}</h5>
                     <p className="card-text"><span>Address :</span> {location.vicinity}</p>
-                    <a href="#" className="btn btn-primary mx-2"><i class="fas fa-location-arrow"></i>Navigate</a>
-                    <a href="#" className="btn btn-danger"><i class="fas fa-trash-alt"></i> Remove</a>
+                    <a href="#" className="btn btn-primary mx-2"><i className="fas fa-location-arrow"></i>Navigate</a>
+                    <a href="#" className="btn btn-danger"><i className="fas fa-trash-alt"></i> Remove</a>
                   </div>
                 </div>
               </li>

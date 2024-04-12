@@ -4,6 +4,8 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import Animation from './Animation';
 import { useMyContext } from '../context/MyContext';
 // import response from '../components/response.json';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const containerStyle = {
   width: '90vw',
@@ -26,6 +28,12 @@ function MyComponent() {
     googleMapsApiKey: process.env.REACT_APP_MAP_API_KEY
   });
 
+  const clearUtterance = () => {
+    window.speechSynthesis.cancel(); // Stop all utterances
+    setSpokenLocation(null); // Clear spoken location
+    setLocationQueue([]); // Clear location queue
+  };
+  
   const handleSaveClick = async () => {
     setIsSaved(!isSaved);
     console.log("Starting to save location ...");
@@ -60,7 +68,16 @@ function MyComponent() {
         console.log('Response:', data); // Log the response for debugging
         if (response.ok) {
             alert("Favorite place added successfully")
-            console.log('Favorite place added successfully:', data);
+            // console.log('Favorite place added successfully:', data);
+            toast.success('Location Saved', {
+              position: "top-center",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+          });
             setIsSaved(true);
         } else {
             console.error('Failed to add favorite place:', data.error);
@@ -349,7 +366,7 @@ function MyComponent() {
           <i class="fa-solid fa-map"></i>
             <p>{locationQueue.length}</p>
           </div>
-          <a href="/">
+          <a href="/" onClick={clearUtterance}>
             <i class="fa-solid fa-right-from-bracket"></i>
           </a>
 

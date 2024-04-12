@@ -10,7 +10,7 @@ export default function Dashboard() {
   const [locations, setLocations] = useState([]);
   const {userData, setUserData} = useMyContext();
 
-  const [greeting, setGreeting] = useState('');
+  // const [greeting, setGreeting] = useState('');
   const {BASE_URL} = useMyContext();
   const [dropdownOptions, setDropdownOptions] = useState([
     'restaurant',
@@ -42,13 +42,13 @@ export default function Dashboard() {
 
 
 
-    //greeting code
-    const hour = new Date().getHours();
-    setGreeting(
-      hour >= 5 && hour < 12 ? 'Good Morning' :
-      hour >= 12 && hour < 18 ? 'Good Afternoon' :
-      'Good Evening'
-    );
+    // //greeting code
+    // const hour = new Date().getHours();
+    // setGreeting(
+    //   hour >= 5 && hour < 12 ? 'Good Morning' :
+    //   hour >= 12 && hour < 18 ? 'Good Afternoon' :
+    //   'Good Evening'
+    // );
   },[])
 
   const handleCategoryChange = (event) => {
@@ -89,7 +89,7 @@ export default function Dashboard() {
 
   return (
     <div className="Dashboard v-flex"> 
-    <div className="greet">{userData && userData.name ? `${greeting} ${userData.name}` : 'Loading...'}</div>
+    {/* <div className="greet">{userData && userData.name ? `${greeting} ${userData.name}` : 'Loading...'}</div> */}
       <div className="main">
         <Link to="/SavedLocations" ><button className='btnGreen' >View Saved Locations</button></Link>
       <div className="v-flex user-input">
@@ -101,9 +101,10 @@ export default function Dashboard() {
             </option>
           ))}
         </select>
-        <input type="text" className="" placeholder="Range" value={range} onChange={(e) => setRange(e.target.value)}/>
+        <input type="text" className="" placeholder="Enter Range in Kms." value={range} onChange={(e) => setRange(e.target.value)}/>
         <input type="text" className="" id="" placeholder="Enter rating 0-5" value={rating} onChange={(e) => setRating(e.target.value)}/>
         <button type="button" className="add" onClick={handleAddLocation}> Add </button>
+        <hr />
       </div>
       
       <div className="v-flex added-locations">
